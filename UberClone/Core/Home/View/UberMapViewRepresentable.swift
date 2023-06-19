@@ -43,7 +43,7 @@ extension UberMapViewRepresentable{
         }
         
         func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-            let regoin = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+            let regoin = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             
             parent.mapView.setRegion(regoin, animated: true)
         }
