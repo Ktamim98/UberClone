@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct RideRequestView: View {
+    
+   @State private var selectedType: RideType = .uberX
+    
     var body: some View {
         VStack{
             Capsule()
                 .foregroundColor(Color(.systemGray5))
                 .frame(width: 48, height: 6)
+                .padding(.top, 8)
             HStack{
                 VStack{
                     Circle()
@@ -72,32 +76,86 @@ struct RideRequestView: View {
             
             ScrollView(.horizontal){
                 HStack(spacing: 12){
-                    ForEach(0..<3, id: \.self){ _ in
+                    ForEach(RideType.allCases){ type in
                         VStack(alignment: .leading){
-                            Image("ubercar")
+                            Image(type.imageName)
                                 .resizable()
                                 .scaledToFit()
+                                .padding(.top, 7)
                             
-                            VStack{
-                                Text("UberX")
+                            VStack(alignment: .leading, spacing: 4){
+                                Text(type.description)
                                     .font(.system(size: 14, weight: .semibold))
                                 
                                 Text("$22.00")
                                     .font(.system(size: 14, weight: .semibold))
                             }
-                            .padding(8)
+                            .padding()
                             
                         }
                         .frame(width: 112, height: 140)
-                        .background(Color(.systemGroupedBackground))
+                        .foregroundColor(type == selectedType ? .white : .black)
+                        .background(Color(type == selectedType ? .systemBlue : .systemGroupedBackground))
+                        .scaleEffect(type == selectedType ? 1.2 : 1.0)
                         .cornerRadius(10)
+                        .onTapGesture {
+                            withAnimation(.spring()){
+                                selectedType = type
+                            }
+                        }
                         
                         
                     }
                 }
                 .padding(.horizontal)
+                
             }
+            
+            Divider()
+                .padding(.vertical, 8)
+            
+            HStack{
+                Text("Visa")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .padding(6)
+                    .background(.blue)
+                    .cornerRadius(5)
+                    .foregroundColor(.white)
+                    .padding(.leading)
+                
+                Text("**** 12345")
+                    .fontWeight(.bold)
+                
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .imageScale(.medium)
+                    .padding()
+                
+            }
+            .frame(height: 50)
+            .background(Color(.systemGroupedBackground))
+            .cornerRadius(10)
+            .padding(.horizontal)
+            
+            
+            Button {
+                
+            } label: {
+                Text("CONFIRM RIDE")
+                    .fontWeight(.bold)
+                    .frame(width: UIScreen.main.bounds.width - 32, height: 50)
+                    .background(.blue)
+                    .cornerRadius(10)
+                    .foregroundColor(.white)
+            }
+
+            
         }
+        .padding(.bottom, 32)
+        .background(.white)
+        .cornerRadius(12)
     }
 }
 
