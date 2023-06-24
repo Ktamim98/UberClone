@@ -12,7 +12,7 @@ https://github.com/Ktamim98/UberClone/assets/124142522/e0b69887-d152-4fa0-a925-4
 - Show available rides with real-time data(cost).
 - Support dark mode
 
-  ## Technologies
+ ## Technologies
 - SwiftUI
 - MapKit
 - CoreLocation
